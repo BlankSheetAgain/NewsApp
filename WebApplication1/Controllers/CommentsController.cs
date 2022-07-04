@@ -17,7 +17,7 @@ namespace NewsAPI.Controllers
 
             return Ok(comments);
         }
-
+        
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<CommentDTO>> GetCommentForNews(Guid id, Guid newsId)
         {
