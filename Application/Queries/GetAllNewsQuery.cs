@@ -11,5 +11,6 @@ namespace Application.Queries
 {
     public class GetAllNewsQuery : IRequest<IEnumerable<NewsDTO>>
     {
+        
     }
 }

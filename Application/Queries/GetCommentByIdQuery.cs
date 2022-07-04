@@ -13,5 +13,7 @@ namespace Application.Queries
     public class GetCommentByIdQuery : IRequest<CommentDTO>
     { 
         public Guid Id { get; set; }
+
+        public Guid NewsId { get; set; }
     }
 }

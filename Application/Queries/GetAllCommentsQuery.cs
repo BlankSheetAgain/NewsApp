@@ -6,5 +6,6 @@ namespace Application.Queries
 {
     public class GetAllCommentsQuery : IRequest<IEnumerable<CommentDTO>>
     {
+        public Guid NewsId { get; set; }
     }
 }
