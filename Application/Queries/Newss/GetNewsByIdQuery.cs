@@ -5,10 +5,10 @@ using AutoMapper;
 
 using MediatR;
 
-namespace Application.Queries
+namespace Application.Queries.Newss
 {
     public class GetNewsByIdQuery : IRequest<NewsDTO>
     {
-       public Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

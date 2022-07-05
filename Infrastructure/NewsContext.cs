@@ -1,8 +1,10 @@
-﻿using Application.Interfaces;
+﻿using System.Reflection;
+
+using Application.Interfaces;
 using Domain.Entities;
 using Domain.Identity;
 
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
@@ -11,6 +13,15 @@ namespace Infrastructure
     {
         public DbSet<News> NewsL { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
+        public NewsContext(DbContextOptions<NewsContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            
+        }
+
 
         public Task<int> SaveChangesAsync() => base.SaveChangesAsync();
     }

@@ -2,7 +2,7 @@
 
 using MediatR;
 
-namespace Application.Queries
+namespace Application.Queries.Comments
 {
     public class GetAllCommentsQuery : IRequest<IEnumerable<CommentDTO>>
     {

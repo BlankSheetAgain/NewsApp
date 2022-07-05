@@ -1,11 +1,12 @@
 ﻿using Application.Interfaces;
+
 using AutoMapper;
 
 using Domain.Entities;
 
 using MediatR;
 
-namespace Application.Commands
+namespace Application.Commands.Comments
 {
     public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, Guid>
     {

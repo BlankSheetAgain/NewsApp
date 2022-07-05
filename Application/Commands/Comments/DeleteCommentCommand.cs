@@ -1,6 +1,7 @@
-﻿using MediatR;
+﻿
+using MediatR;
 
-namespace Application.Commands
+namespace Application.Commands.Comments
 {
     public class DeleteCommentCommand : IRequest<Guid>
     {

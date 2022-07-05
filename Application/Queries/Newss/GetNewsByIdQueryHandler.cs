@@ -1,9 +1,11 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+
 using AutoMapper;
+
 using MediatR;
 
-namespace Application.Queries
+namespace Application.Queries.Newss
 {
     public class GetNewsByIdQueryHandler : IRequestHandler<GetNewsByIdQuery, NewsDTO>
     {

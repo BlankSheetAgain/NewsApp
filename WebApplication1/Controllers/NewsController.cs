@@ -1,8 +1,6 @@
-﻿using Application.Commands;
+﻿using Application.Commands.Newss;
 using Application.DTOs;
-using Application.Queries;
-
-using MediatR;
+using Application.Queries.Newss;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +29,8 @@ namespace NewsAPI.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateNews([FromBody] NewsDTO newsDTO)
         {
+            newsDTO.Comments = new HashSet<CommentDTO>();
+
             var result = await Sender.Send(new CreateNewsCommand { NewsDTO = newsDTO });
 
             return Ok(result);

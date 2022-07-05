@@ -1,9 +1,12 @@
 ﻿using Application.Interfaces;
+
 using AutoMapper;
+
 using Domain.Entities;
+
 using MediatR;
 
-namespace Application.Commands
+namespace Application.Commands.Newss
 {
     public class CreateNewsCommandHendler : IRequestHandler<CreateNewsCommand, Guid>
     {

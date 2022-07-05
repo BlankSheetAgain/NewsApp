@@ -5,7 +5,7 @@ using AutoMapper;
 
 using MediatR;
 
-namespace Application.Queries
+namespace Application.Queries.Comments
 {
     public class GetCommentByIdQueryHandler : IRequestHandler<GetCommentByIdQuery, CommentDTO>
     {
@@ -23,7 +23,7 @@ namespace Application.Queries
         {
             var comment = _context.Comments.FirstOrDefault(c => c.Id == query.Id);
 
-            return _mapper.Map<CommentDTO>(comment);    
+            return _mapper.Map<CommentDTO>(comment);
         }
     }
 }

@@ -5,7 +5,9 @@ using AutoMapper;
 
 using MediatR;
 
-namespace Application.Queries
+using Microsoft.EntityFrameworkCore;
+
+namespace Application.Queries.Comments
 {
     public class GetAllCommentsQueryHandler : IRequestHandler<GetAllCommentsQuery, IEnumerable<CommentDTO>>
     {
@@ -19,9 +21,9 @@ namespace Application.Queries
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CommentDTO>> Handle (GetAllCommentsQuery query, CancellationToken token)
+        public async Task<IEnumerable<CommentDTO>> Handle(GetAllCommentsQuery query, CancellationToken token)
         {
-            var comments = _context.Comments.ToList();
+            var comments = await _context.Comments.ToListAsync();
 
             return _mapper.Map<IEnumerable<CommentDTO>>(comments);
         }

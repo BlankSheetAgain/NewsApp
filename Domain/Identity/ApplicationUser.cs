@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Domain.Entities;
 
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Identity
 {

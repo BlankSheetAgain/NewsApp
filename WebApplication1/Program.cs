@@ -1,7 +1,12 @@
 using Application;
+using Application.Interfaces;
+
+using Infrastructure;
+
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var connectionString = builder.Configuration.GetConnectionString("NewsConnection");
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -9,6 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplication();
+builder.Services.AddDbContext<INewsContext, NewsContext>(d => d.UseSqlServer(connectionString));
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

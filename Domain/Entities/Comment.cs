@@ -7,7 +7,7 @@ namespace Domain.Entities
     {
         public string Content { get; set; }
 
-        public virtual News News { get; set; }
+        public virtual News? News { get; set; }
 
         public ApplicationUser User { get; set; }
     }

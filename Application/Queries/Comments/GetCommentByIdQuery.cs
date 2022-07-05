@@ -8,10 +8,10 @@ using Application.DTOs;
 
 using MediatR;
 
-namespace Application.Queries
+namespace Application.Queries.Comments
 {
     public class GetCommentByIdQuery : IRequest<CommentDTO>
-    { 
+    {
         public Guid Id { get; set; }
 
         public Guid NewsId { get; set; }

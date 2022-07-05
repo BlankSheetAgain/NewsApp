@@ -1,6 +1,6 @@
-﻿using Application.Commands;
+﻿using Application.Commands.Comments;
 using Application.DTOs;
-using Application.Queries;
+using Application.Queries.Comments;
 
 using Microsoft.AspNetCore.Mvc;
 
