@@ -2,7 +2,7 @@
 
 using MediatR;
 
-namespace Application.Commands.Comments
+namespace Application.Commands.Comments.Create
 {
     public class CreateCommentCommand : IRequest<Guid>
     {

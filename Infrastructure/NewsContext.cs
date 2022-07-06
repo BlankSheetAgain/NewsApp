@@ -14,11 +14,16 @@ namespace Infrastructure
         public DbSet<News> NewsL { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
-        public NewsContext(DbContextOptions<NewsContext> options) : base(options) { }
+        public NewsContext(DbContextOptions<NewsContext> options) : base(options) 
+        {
+        Database.EnsureCreated();
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            
             
         }
 

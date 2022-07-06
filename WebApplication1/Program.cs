@@ -5,6 +5,8 @@ using Infrastructure;
 
 using Microsoft.EntityFrameworkCore;
 
+using NewsAPI.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("NewsConnection");
 // Add services to the container.
@@ -25,11 +27,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.MapControllers();
 
 app.Run();

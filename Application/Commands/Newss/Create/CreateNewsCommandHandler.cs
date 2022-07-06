@@ -6,7 +6,7 @@ using Domain.Entities;
 
 using MediatR;
 
-namespace Application.Commands.Newss
+namespace Application.Commands.Newss.Create
 {
     public class CreateNewsCommandHendler : IRequestHandler<CreateNewsCommand, Guid>
     {
@@ -22,7 +22,11 @@ namespace Application.Commands.Newss
 
         public async Task<Guid> Handle(CreateNewsCommand command, CancellationToken token)
         {
-            var news = _mapper.Map<News>(command.NewsDTO);
+            var news = new News
+            {
+                Title = command.Title,
+                Description = command.Description
+            };
 
             await _context.NewsL.AddAsync(news);
 

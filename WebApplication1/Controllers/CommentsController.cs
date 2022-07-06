@@ -1,4 +1,5 @@
 ﻿using Application.Commands.Comments;
+using Application.Commands.Comments.Delete;
 using Application.DTOs;
 using Application.Queries.Comments;
 
@@ -13,11 +14,11 @@ namespace NewsAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CommentDTO>>> GetAllCommentsForNews(Guid newsId)
         {
-            var comments = await Sender.Send(new GetAllCommentsQuery {NewsId = newsId});
+            var comments = await Sender.Send(new GetAllCommentsQuery { NewsId = newsId });
 
             return Ok(comments);
         }
-        
+
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<CommentDTO>> GetCommentForNews(Guid id, Guid newsId)
         {
@@ -33,10 +34,10 @@ namespace NewsAPI.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult> DeleteCommentForNews(Guid id, Guid newsId)
         {
-            var result = await Sender.Send(new DeleteCommentCommand 
+            var result = await Sender.Send(new DeleteCommentCommand
             {
-            Id = id,
-            NewsId = newsId
+                Id = id,
+                NewsId = newsId
             });
 
             return Ok(result);

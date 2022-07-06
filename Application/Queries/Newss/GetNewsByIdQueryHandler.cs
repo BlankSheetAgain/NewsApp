@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.Exceptions;
 using Application.Interfaces;
 
 using AutoMapper;
@@ -22,6 +23,8 @@ namespace Application.Queries.Newss
         public async Task<NewsDTO> Handle(GetNewsByIdQuery query, CancellationToken token)
         {
             var news = _context.NewsL.FirstOrDefault(n => n.Id == query.Id);
+
+            if (news == null) throw new ItemNotFoundException("The specified news item was not found");
 
             return _mapper.Map<NewsDTO>(news);
         }

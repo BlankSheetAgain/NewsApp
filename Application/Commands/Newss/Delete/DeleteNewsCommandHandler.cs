@@ -2,7 +2,7 @@
 
 using MediatR;
 
-namespace Application.Commands.Newss
+namespace Application.Commands.Newss.Delete
 {
     public class DeleteNewsCommandQueryHandler : IRequestHandler<DeleteNewsCommand, Guid>
     {

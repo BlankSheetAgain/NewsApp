@@ -10,7 +10,7 @@ namespace Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.HasOne(x => x.News).WithMany(x => x.Comments);
+            builder.HasOne(x => x.News).WithMany(x => x.Comments).OnDelete(DeleteBehavior.Cascade);
             builder.Property(x => x.Content).IsRequired();
             builder.Property(x=>x.CreatedAt).HasDefaultValue(DateTime.UtcNow);
             builder.Property(x => x.UpdatedAt).HasDefaultValue(DateTime.UtcNow);

@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.Exceptions;
 using Application.Interfaces;
 
 using AutoMapper;
@@ -23,6 +24,8 @@ namespace Application.Queries.Newss
         public async Task<IEnumerable<NewsDTO>> Handle(GetAllNewsQuery query, CancellationToken token)
         {
             var news = await _context.NewsL.ToListAsync();
+
+            if (news == null) throw new ItemNotFoundException("No news has been added yet");
 
             return _mapper.Map<IEnumerable<NewsDTO>>(news);
         }

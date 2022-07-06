@@ -6,7 +6,7 @@ using Domain.Entities;
 
 using MediatR;
 
-namespace Application.Commands.Comments
+namespace Application.Commands.Comments.Create
 {
     public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, Guid>
     {

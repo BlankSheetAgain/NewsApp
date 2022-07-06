@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Commands.Newss
+namespace Application.Commands.Newss.Update
 {
     public class UpdateNewsCommandHandler
     {

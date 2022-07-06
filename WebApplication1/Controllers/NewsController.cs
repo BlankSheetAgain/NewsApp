@@ -1,4 +1,6 @@
 ﻿using Application.Commands.Newss;
+using Application.Commands.Newss.Create;
+using Application.Commands.Newss.Delete;
 using Application.DTOs;
 using Application.Queries.Newss;
 
@@ -18,7 +20,7 @@ namespace NewsAPI.Controllers
             return Ok(news);
         }
 
-        [HttpGet("id:guid}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<NewsDTO>> GetNewsById(Guid id)
         {
             var news = await Sender.Send(new GetNewsByIdQuery { Id = id });
@@ -27,11 +29,9 @@ namespace NewsAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateNews([FromBody] NewsDTO newsDTO)
+        public async Task<ActionResult> CreateNews([FromBody] CreateNewsCommand createNewsCommand)
         {
-            newsDTO.Comments = new HashSet<CommentDTO>();
-
-            var result = await Sender.Send(new CreateNewsCommand { NewsDTO = newsDTO });
+            var result = await Sender.Send(createNewsCommand);
 
             return Ok(result);
         }
