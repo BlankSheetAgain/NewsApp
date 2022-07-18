@@ -1,22 +1,27 @@
-﻿using Application.Exceptions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Application.Exceptions;
 using Application.Interfaces;
 
 using MediatR;
 
-namespace Application.Commands.Comments.Delete
+namespace Application.Commands.Comments.Update
 {
-    public class DeleteCommentCommandHandler : IRequestHandler<DeleteCommentCommand, Guid>
+    public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand, Guid>
     {
         private readonly INewsContext _context;
 
-        public DeleteCommentCommandHandler(INewsContext context)
+        public UpdateCommentCommandHandler(INewsContext context)
         {
             _context = context;
         }
 
-        public async Task<Guid> Handle(DeleteCommentCommand command, CancellationToken token)
+        public async Task<Guid> Handle(UpdateCommentCommand command, CancellationToken token)
         {
-
             var news = await _context.NewsL.FindAsync(command.NewsId);
 
             if (news == null) throw new ItemNotFoundException("News with this id does not exist");
@@ -25,11 +30,16 @@ namespace Application.Commands.Comments.Delete
 
             if (comment == null) throw new ItemNotFoundException("Comment with this id does not exist");
 
-            _context.Comments.Remove(comment);
+            comment.Content = command.Content;
+
+            comment.UpdatedAt = DateTime.UtcNow;
+
+            _context.Comments.Update(comment);
 
             await _context.SaveChangesAsync();
 
             return comment.Id;
+
         }
     }
 }

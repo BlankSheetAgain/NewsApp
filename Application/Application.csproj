@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Comments\Update\" />
+    <Folder Include="Commands\Authentication\" />
   </ItemGroup>
 
 </Project>

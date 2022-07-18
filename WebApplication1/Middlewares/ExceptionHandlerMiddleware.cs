@@ -42,7 +42,6 @@ namespace NewsAPI.Middlewares
             var exceptionModel = new ExceptionModel
             {
                 Message = e.Message,
-                StackTrace = e.StackTrace,
                 StatusCode = response.StatusCode
             };
 

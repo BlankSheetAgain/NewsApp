@@ -1,5 +1,4 @@
-﻿using Application.DTOs;
-using Application.Exceptions;
+﻿using Application.Exceptions;
 using Application.Interfaces;
 
 using AutoMapper;
@@ -10,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Queries.Newss
 {
-    public class GetAllNewsQueryHandler : IRequestHandler<GetAllNewsQuery, IEnumerable<NewsDTO>>
+    public class GetAllNewsQueryHandler : IRequestHandler<GetAllNewsQuery, IEnumerable<NewsQueryResult>>
     {
         private readonly INewsContext _context;
 
@@ -21,13 +20,11 @@ namespace Application.Queries.Newss
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<NewsDTO>> Handle(GetAllNewsQuery query, CancellationToken token)
+        public async Task<IEnumerable<NewsQueryResult>> Handle(GetAllNewsQuery query, CancellationToken token)
         {
             var news = await _context.NewsL.ToListAsync();
 
-            if (news == null) throw new ItemNotFoundException("No news has been added yet");
-
-            return _mapper.Map<IEnumerable<NewsDTO>>(news);
+            return _mapper.Map<IEnumerable<NewsQueryResult>>(news);
         }
     }
 }

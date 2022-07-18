@@ -1,4 +1,4 @@
-﻿using Application.DTOs;
+﻿using Application.Exceptions;
 using Application.Interfaces;
 
 using AutoMapper;
@@ -7,9 +7,11 @@ using MediatR;
 
 using Microsoft.EntityFrameworkCore;
 
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
 namespace Application.Queries.Comments
 {
-    public class GetAllCommentsQueryHandler : IRequestHandler<GetAllCommentsQuery, IEnumerable<CommentDTO>>
+    public class GetAllCommentsQueryHandler : IRequestHandler<GetAllCommentsQuery, IEnumerable<CommentQueryResult>>
     {
         private readonly INewsContext _context;
 
@@ -21,11 +23,15 @@ namespace Application.Queries.Comments
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CommentDTO>> Handle(GetAllCommentsQuery query, CancellationToken token)
+        public async Task<IEnumerable<CommentQueryResult>> Handle(GetAllCommentsQuery query, CancellationToken token)
         {
-            var comments = await _context.Comments.ToListAsync();
+            var news = await _context.NewsL.FindAsync(query.NewsId);
 
-            return _mapper.Map<IEnumerable<CommentDTO>>(comments);
+            if (news == null) throw new ItemNotFoundException("News with this id does not exist");
+
+            var comments = await _context.Comments.Where(c => c.News == news).ToListAsync();
+
+            return _mapper.Map<IEnumerable<CommentQueryResult>>(comments);
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Application.DTOs;
-
-using MediatR;
+﻿using MediatR;
 
 namespace Application.Commands.Comments.Create
 {
     public class CreateCommentCommand : IRequest<Guid>
     {
-        public CommentDTO CommentDTO { get; set; }
+        public string Content { get; set; }
+
+        public Guid NewsId { get; set; }
     }
 }

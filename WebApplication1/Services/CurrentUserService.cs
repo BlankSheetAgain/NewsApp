@@ -13,6 +13,6 @@ namespace NewsAPI.Services
             _contextAccessor = contextAccessor;
         }
 
-        public Guid Id => Guid.Parse(_contextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
+        public string Id => _contextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

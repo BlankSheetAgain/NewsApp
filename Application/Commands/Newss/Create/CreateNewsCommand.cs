@@ -1,5 +1,4 @@
-﻿using Application.DTOs;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 
 using AutoMapper;
 
@@ -11,8 +10,8 @@ namespace Application.Commands.Newss.Create
 {
     public class CreateNewsCommand : IRequest<Guid>
     {
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

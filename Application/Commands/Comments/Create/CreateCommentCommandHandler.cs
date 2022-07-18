@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 
 using AutoMapper;
 
@@ -22,11 +23,16 @@ namespace Application.Commands.Comments.Create
 
         public async Task<Guid> Handle(CreateCommentCommand command, CancellationToken token)
         {
-            var comment = _mapper.Map<News>(command.CommentDTO);
+            var news = await _context.NewsL.FindAsync(command.NewsId);
 
-            await _context.NewsL.AddAsync(comment);
+            if (news == null) throw new ItemNotFoundException("News with this id does not exist");
 
-            await _context.SaveChangesAsync();
+            var comment = new Comment
+            {
+                Content = command.Content,
+
+                News = news
+            };
 
             return comment.Id;
         }

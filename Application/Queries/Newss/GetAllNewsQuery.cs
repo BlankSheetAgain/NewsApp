@@ -1,5 +1,4 @@
-﻿using Application.DTOs;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 
 using AutoMapper;
 
@@ -9,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Queries.Newss
 {
-    public class GetAllNewsQuery : IRequest<IEnumerable<NewsDTO>>
+    public class GetAllNewsQuery : IRequest<IEnumerable<NewsQueryResult>>
     {
 
     }
